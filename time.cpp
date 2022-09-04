@@ -1,54 +1,85 @@
-/*C++ program to create class to read and add two times.*/
 #include <iostream>
 using namespace std;
- 
-class Time
-{
-private:
-    int hours;
-    int minutes;
-    int seconds;
- 
-public:
-    void getTime(void);
-    void putTime(void);
-    void addTime(Time T1,Time T2);
+
+class time{
+    private:
+        int hour;
+        int min;
+        int sec;
+    public:
+        void read();
+        void display();
+        time add(time a);
+        time difference(time a);
+
 };
- 
-void Time::getTime(void)
-{
-    cout << "Enter time:" << endl;
-    cout << "Hours? ";    cin>>hours;
-    cout << "Minutes? ";  cin>>minutes;
-    cout << "Seconds? ";  cin>>seconds;
+
+void time::read(){
+    cout<<"Hour ?"<<endl;
+    cin>>hour;
+    cout<<"Minutes ?"<<endl;
+    cin>>min;
+    cout<<"Seconds ?"<<endl;
+    cin>>sec;
 }
- 
-void Time::putTime(void)
-{
-    cout << endl;
-    cout << "Time after add: ";
-    cout << hours << ":" << minutes << ":" << seconds << endl;
+
+void time::display(){
+    cout<<hour<<":"<<min<<":"<<sec<<endl;
 }
- 
-void Time::addTime(Time T1,Time T2)
-{
-     
-    this->seconds=T1.seconds+T2.seconds;
-    this->minutes=T1.minutes+T2.minutes + this->seconds/60;;
-    this->hours= T1.hours+T2.hours + (this->minutes/60);
-    this->minutes %=60;
-    this->seconds %=60;
+
+time time::add(time a){
+    time c;
+    c.sec = this->sec + a.sec;
+    c.min = this->min + a.min + c.sec/60;
+    c.hour = this->hour + a.hour + c.min/60;
+    c.sec %=60;
+    c.min %=60;
+    return c;
 }
- 
- 
-int main()
-{
-    Time T1,T2,T3;
-    T1.getTime();
-    T2.getTime();
-    //add two times
-    T3.addTime(T1,T2);
-    T3.putTime();
-     
+
+time time::difference(time a){
+    time d;
+    int i =a.hour*3600+a.min*60+sec;
+    int j = hour*3600+min*60+sec;
+    if(i>j){
+        if(a.sec<sec){
+            a.min--;
+            d.sec +=60;
+        }
+        d.sec = a.sec-sec;
+        if(a.min<min){
+            a.hour--;
+            a.min+=60;
+        }
+        d.min = a.min-min;
+        d.hour= a.hour - hour;
+    }
+    else{
+        if(sec<a.sec){
+            min--;
+            sec +=60;
+        }
+        d.sec = sec-a.sec;
+        if(min<a.min){
+            hour--;
+            min+=60;
+        }
+        d.min = min-a.min;
+        d.hour= hour - a.hour;
+    }
+    return d;
+}
+
+
+int main(){
+
+    time a,b,c,d;
+    a.read();
+    b.read();
+    c=a.add(b);
+    d=a.difference(b);
+    c.display();
+    d.display();
+
     return 0;
 }
