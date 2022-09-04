@@ -3,17 +3,16 @@
 #include <math.h>
 using namespace std;
 
-int prefixEvaluation(string str){
+int postfixEvaluation(string str){
     stack<int> s;
-    for(int i=str.length();i>=0;i--){
+    for(int i=0;i<str.length();i++){
         if(str[i]>='0' && str[i]<='9'){
             s.push(str[i]-'0');
         }
-        else {
-            int op1,op2;
-            op1=s.top();
+        else{
+            int op1=s.top();
             s.pop();
-            op2= s.top();
+            int op2=s.top();
             s.pop();
             switch (str[i]){
                 case '^':
@@ -23,13 +22,13 @@ int prefixEvaluation(string str){
                     s.push(op1*op2);
                     break;
                 case '/':
-                    s.push(op1/op2);
+                    s.push(op2/op1);
                     break;
                 case '+':
                     s.push(op1+op2);
                     break;
                 case '-':
-                    s.push(op1-op2);
+                    s.push(op2-op1);
                     break;
             }
         }
@@ -41,11 +40,11 @@ int prefixEvaluation(string str){
 
 int main(){
 
-    string str;
+    string s;
     cout<<"enter the string"<<endl;
-    cin>>str;
+    getline(cin,s);
 
-    cout<<prefixEvaluation(str);
+    cout<<postfixEvaluation(s);
 
     return 0;
 }
