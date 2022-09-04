@@ -1,24 +1,45 @@
-#include<iostream>
-#include<stack>
-#include<string.h>
+#include <iostream>
+#include <stack>
+#include <algorithm>
 using namespace std;
 
 int prec(char ch){
-    if(ch=='^')
+
+    if(ch=='^'){
         return 3;
-    else if (ch=='*' || ch=='/')
+    }
+    else if(ch=='*' || ch=='/'){
         return 2;
-    else if(ch=='+' || ch=='-')
+    }
+    else if(ch=='+' || ch=='-'){
         return 1;
-    else
+    }
+    else{
         return -1;
+    }
+
 }
 
-string infixToPostfix(string str){
+string infixToPrefix(string str){
+    reverse(str.begin(),str.end());
     stack<char> s;
-    string res="";
+    string res;
+
     for(int i=0;i<str.length();i++){
-        if(str[i]=='('){
+        if(str[i]==')'){
+            str[i]='(';
+        }
+        else if(str[i]=='('){
+            str[i]=')';
+        }
+    }
+
+    for(int i=0;i<str.length();i++){
+
+        if(str[i]>='a' && str[i]<='z' || str[i]>='A' && str[i]<='Z'){
+            res+=str[i];
+        }
+        else if(str[i]=='('){
             s.push(str[i]);
         }
         else if(str[i]==')'){
@@ -26,11 +47,9 @@ string infixToPostfix(string str){
                 res+=s.top();
                 s.pop();
             }
-            if(!s.empty())
+            if(!s.empty()){
                 s.pop();
-        }
-        else if(str[i]>='a' && str[i]<='z' || str[i]>='A' && str[i]<='Z'){
-            res+=str[i];
+            }
         }
         else{
             while(!s.empty() && prec(s.top())>prec(str[i])){
@@ -38,8 +57,8 @@ string infixToPostfix(string str){
                 s.pop();
             }
             s.push(str[i]);
-        }
-        
+        }        
+
     }
 
     while(!s.empty()){
@@ -47,6 +66,7 @@ string infixToPostfix(string str){
         s.pop();
     }
 
+    reverse(res.begin(),res.end());
     return res;
 }
 
@@ -56,7 +76,8 @@ int main(){
     cout<<"enter the string"<<endl;
     getline(cin,str);
 
-    cout<<infixToPostfix(str);
+    cout<<infixToPrefix(str);
+
 
     return 0;
 }
