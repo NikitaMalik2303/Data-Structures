@@ -1,5 +1,9 @@
-s.pop();
-    s.pop();
-    s.peek();
-    s.pop();
-    s.pop();
+cout<<s.pop()<<endl;
+    // cout<<s.top()<<endl;  
+    // cout<<s.pop()<<endl;
+    // cout<<s.top()<<endl;  
+    // cout<<s.pop()<<endl;
+    // cout<<s.top()<<endl;  
+    // cout<<s.pop()<<endl;
+    // cout<<s.top()<<endl;  
+    // cout<<s.pop()<<endl; 
