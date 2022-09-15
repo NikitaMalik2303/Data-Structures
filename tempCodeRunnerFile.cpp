@@ -1,2 +1,10 @@
 a.dequeue();
     // a.dequeue();
+    // a.dequeue();
+    // a.dequeue();
+    // a.dequeue();
+    // a.dequeue();
+    // a.dequeue();
+    // a.dequeue();
+    // a.dequeue();
+    // a.print();

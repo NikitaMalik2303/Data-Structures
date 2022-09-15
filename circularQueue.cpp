@@ -33,7 +33,7 @@ class queue{
             cout<<"Queue Overflow"<<endl;
             return;
         }
-        rear=(rear+1)%n-1;
+        rear=(rear+1)%n;
         arr[rear]=x;
         N++;
     }
@@ -57,10 +57,14 @@ class queue{
         return N;
     }
     void print(){
-        for(int i =front+1;i<=rear;i++){
-            cout<<arr[i]<<"\t";
+        if(isEmpty()){
+            cout<<"stack is empty"<<endl;
+            return ;
         }
-        cout<<endl;
+        for(int i =front+1;i%n!=rear;i++){
+            cout<<arr[i%n]<<"\t";
+        }
+        cout<<arr[rear]<<endl;
     }
 
 };
@@ -94,16 +98,16 @@ int main(){
     a.enqueue(12);
     a.print();
 
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.print();
+    a.dequeue();
+    a.dequeue();
+    a.dequeue();
+    a.dequeue();
+    a.dequeue();
+    a.dequeue();
+    a.dequeue();
+    a.dequeue();
+    a.dequeue();
+    a.print();
 
     return 0;
     
