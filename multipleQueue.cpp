@@ -1,88 +1,70 @@
 #include <iostream>
 using namespace std;
 
-class cQue{
+class multipleQueue{
 
-    int front,rear;
-    int n,N;
+    int k,n;
     int *arr;
-
+    int *front;
+    int *rear;
     public:
-    cQue(int n){
-        this->n =n;
-        N=0;
-        front = rear =-1;
-        arr = new int [n];
+    multipleQueue(int n,int k){
+        this->n = n;
+        this->k =k;
+        arr = new int[n];
+        front = new int[k];
+        rear = new int[k];
+        for(int i=0;i<k;i++){
+            front[i] = rear[i] = i*n/k-1;
+        }
     }
-    bool isEmpty(){
-        if(front == rear){
+    bool isEmpty(int s){
+        if(front[s-1]<=(s-1)*n/k-1){
             return true;
         }
-        return false;
+        else{
+            return false;
+        }
     }
-    bool isFull(){
-        if((n+rear-front)%n==n-1){
+    bool isFull(int s){
+        if(rear[s-1]<s*n/k-1){
+            return false;
+        }
+        else{
             return true;
         }
-        return false;
     }
-    void push(int x){
-        if(isFull()){
-            cout<<"Queue overflow"<<endl;
-            return;
-        }
-        rear = (rear+1)%n;
-        arr[rear]=x;
-        N++;
-    }
-    int pop(){
-        if(isEmpty()){
-            cout<<"Queue is empty"<<endl;
-            return -1;
-        }
-        front = (front +1)%n;
-        return arr[front];
-    }
-    void display(){
-        if(isEmpty()){
-            cout<<"Queue is empty"<<endl;
+    void push(int x,int s){
+        if(isFull(s)){
+            cout<<"Queue is full"<<endl;
             return ;
         }
-        for(int i=front +1;i%n!=rear;i++){
-            cout<<arr[i%n]<<"\t";
-        }
-        cout<<arr[rear]<<endl;
+        arr[++rear[s-1]]=x;
+    }
+    int pop(int s){
+        if(isEmpty(s)){
+            cout<<"queue is empty"<<endl;
+            return -1;
+        } 
+        return arr[++front[s-1]];
     }
 
 };
 
 int main(){
 
-    cQue q(8);
-    q.push(1);
-    q.push(2);
-    q.push(3);
-    q.push(4);
-    q.push(5);
-    q.push(6);
-    q.push(7);
+    multipleQueue a(6,3);
+    a.push(1,1);
+    a.push(2,1);
+    a.push(3,1);
 
-    q.display();
+    a.push(1,2);
+    a.push(1,2);
+    a.push(1,2);
+    a.push(1,3);
+    a.push(1,3);
+    a.push(1,3);
 
-    q.pop();
-    q.pop();
-    q.pop();
-    q.pop();
-
-    q.display();
-
-    q.push(8);
-    q.push(9);
-    q.push(10);
-    q.push(11);
-    q.push(12);
-
-    q.display();
 
     return 0;
 }
