@@ -1,10 +1,3 @@
-a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.dequeue();
-    // a.print();
+smt arr[10];
+    // smt transpose[10];
+    // for(int )

@@ -32,7 +32,7 @@ class sparseMatrix{
         t[0].col=s[0].row;
         t[0].value=s[0].value;
         for(int i=0;i<s[0].col;i++){
-            for(int j=0;j<s[0].value;j++){
+            for(int j=1;j<=s[0].value;j++){
                 if(s[j].col==i){
                     t[index].col=s[j].row;
                     t[index].row = s[j].col;
