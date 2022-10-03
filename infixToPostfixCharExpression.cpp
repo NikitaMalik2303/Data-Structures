@@ -72,13 +72,13 @@ void convert(string str){
             s.pop();
         }
         else{
-            while(!s.isEmpty() && prec(s.peek())>prec(cc)){
+            while(!s.isEmpty() && prec(s.peek())>=prec(cc)){
                 res+=s.pop();
             }
             s.push(cc);
         }
     }
-    if(!s.isEmpty()){
+    while(!s.isEmpty()){
         res+=s.pop();
     }
 
