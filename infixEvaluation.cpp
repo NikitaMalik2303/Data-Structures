@@ -3,9 +3,9 @@
 #include <math.h>
 using namespace std;
 
-int prefixEvaluation(string str){
+void prefixEvaluation(string str){
     stack<int> s;
-    for(int i=str.length();i>=0;i--){
+    for(int i=str.length()-1;i>=0;i--){
         if(str[i]>='0' && str[i]<='9'){
             s.push(str[i]-'0');
         }
@@ -35,7 +35,7 @@ int prefixEvaluation(string str){
         }
     }
 
-    return s.top();
+    cout<<s.top()<<endl;
 
 }
 
@@ -45,7 +45,9 @@ int main(){
     cout<<"enter the string"<<endl;
     cin>>str;
 
-    cout<<prefixEvaluation(str);
+    prefixEvaluation(str);
+
+    cout<<"Answer"<<endl;
 
     return 0;
 }

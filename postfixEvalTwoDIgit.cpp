@@ -49,10 +49,10 @@ void evaluate(string str){
         if(str[i]==' '){
             continue;
         }
-        else if(isdigit(str[i])!=0){
+        else if(str[i]>='0' && str[i]<='9'){
             int num = 0;
-            while(isdigit(str[i])!=0){
-                num = num*10 + (int)(str[i]-'0');
+            while(str[i]>='0' && str[i]<='9'){
+                num = num*10 + str[i]-'0';
                 i++;
             }
             i--;

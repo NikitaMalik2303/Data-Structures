@@ -10,9 +10,9 @@ int postfixEvaluation(string str){
             s.push(str[i]-'0');
         }
         else{
-            int op1=s.top();
-            s.pop();
             int op2=s.top();
+            s.pop();
+            int op1=s.top();
             s.pop();
             switch (str[i]){
                 case '^':
@@ -22,13 +22,13 @@ int postfixEvaluation(string str){
                     s.push(op1*op2);
                     break;
                 case '/':
-                    s.push(op2/op1);
+                    s.push(op1/op2);
                     break;
                 case '+':
                     s.push(op1+op2);
                     break;
                 case '-':
-                    s.push(op2-op1);
+                    s.push(op1 - op2);
                     break;
             }
         }

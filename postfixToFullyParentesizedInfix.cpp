@@ -45,7 +45,9 @@ void convert(string str){
     stack s;
     for(int i =0;i<str.length();i++){
         if(str[i]>='a' && str[i]<='z' || str[i]>='A' && str[i]<='Z'){
-            string word = str.substr(i,1);
+            string word = "";
+            word+=str[i];
+            //word = str.substring(i,1);
             s.push(word);
         }
         else {

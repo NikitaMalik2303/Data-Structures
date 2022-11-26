@@ -52,10 +52,19 @@ string infixToPrefix(string str){
             }
         }
         else{
-            while(!s.empty() && prec(s.top())>prec(str[i])){
+            if(str[i] == '^'){
+                while(!s.empty() && prec(s.top())>=prec(str[i])){
+                    res+=s.top();
+                    s.pop();
+                }
+            }
+            else{
+                while(!s.empty() && prec(s.top())>prec(str[i])){
                 res+=s.top();
                 s.pop();
             }
+            }
+            
             s.push(str[i]);
         }        
 
