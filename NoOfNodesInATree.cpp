@@ -12,19 +12,11 @@ class Node{
     }
 };
 
-int depth(Node* root){
-   if(root==NULL){
+int noOfNodes(Node* root){
+    if(root==NULL){
         return 0;
-   }
-   int left = depth(root->lchild);
-   int right = depth(root->rchild);
-   if(left>right){
-        return depth(root->lchild) +1;
-   }
-   else{
-        return depth(root->rchild )+1;
-   }
-
+    }
+    return noOfNodes(root->lchild) + noOfNodes(root->rchild) + 1;
 }
 
 int main(){
@@ -37,7 +29,7 @@ int main(){
     root->rchild->lchild = new Node(6);
     root->rchild->rchild = new Node(7);
 
-    cout<<depth(root);
+    cout<<noOfNodes(root);
 
     return 0;
 }
