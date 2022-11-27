@@ -20,7 +20,7 @@ bool ancestors(Node* root, int key){
         return true;
     }
     if(ancestors(root->lchild,key) || ancestors(root->rchild,key)){
-        cout<<root->data<<"  ";
+        cout<<root->data<<"  ";                
         return true;
     }
     return false;

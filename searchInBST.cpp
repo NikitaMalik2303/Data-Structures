@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+
+/*          50
+           /   \
+         40     80
+        / \     / \
+       30  45  60  90
+*/
+
+class Node{
+    public:
+    int data;
+    Node* lchild;
+    Node* rchild;
+    Node(int n){
+        data = n;
+        lchild = rchild = NULL;
+    }
+};
+
+void search(Node* root, int key){
+    Node* curr = root;
+    while(curr!=NULL){
+        if(curr->data == key){
+            cout<<"Element found in BST"<<endl;
+            return;
+        }
+        else if(key<curr->data){
+            curr = curr->lchild;
+        }
+        else{
+            curr = curr->rchild;
+        }
+    }
+    if(curr == NULL){
+        cout<<"Element not found in BST"<<endl;
+    }
+}
+
+void preorder(Node *root){
+    if(root == NULL){
+        return;
+    }
+    cout<<root->data<<"  ";
+    preorder(root->lchild);
+    preorder(root->rchild);
+}
+
+int main(){
+
+    Node *root = new Node(50);
+    root->lchild = new Node(40);
+    root->rchild = new Node(80);
+    root->lchild->lchild = new Node(30);
+    root->lchild->rchild = new Node(45);
+    root->rchild->lchild = new Node(60);
+    root->rchild->rchild = new Node(90);
+
+    int key;
+    cin>>key;
+
+    search(root,key);
+
+    preorder(root);
+
+
+    return 0;
+}
